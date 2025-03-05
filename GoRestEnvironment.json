@@ -1,0 +1,15 @@
+{
+	"id": "d10aaa40-185a-4967-907f-4d347ce199c8",
+	"name": "demo",
+	"values": [
+		{
+			"key": "domainName",
+			"value": "https://gorest.co.in",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-03-05T12:46:39.660Z",
+	"_postman_exported_using": "Postman/11.35.0-250304-1730"
+}

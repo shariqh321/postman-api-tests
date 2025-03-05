@@ -1,0 +1,412 @@
+{
+	"info": {
+		"_postman_id": "6d4140ec-7825-466d-981b-f525ee17f6b9",
+		"name": "GoRest API Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1988749"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "/public/v2/users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Convert stored functions back into usable functions\r",
+									"eval(pm.globals.get(\"validateResponseTime\"));\r",
+									"eval(pm.globals.get(\"validateStatusCode\"));\r",
+									"eval(pm.globals.get(\"validateContentType\"));\r",
+									"eval(pm.globals.get(\"validateJsonSchema\"));\r",
+									"eval(pm.globals.get(\"validateResponseBodyKey\"));\r",
+									"\r",
+									"var responseTime = Number(pm.collectionVariables.get(\"responseTimeInms\"));\r",
+									"var statusCode = Number(pm.collectionVariables.get(\"responseSuccessStatusCode\"));\r",
+									"var contentType = pm.collectionVariables.get(\"resposnseContentType\");\r",
+									"\r",
+									"// Call validation functions\r",
+									"validateResponseTime(responseTime);  \r",
+									"validateStatusCode(statusCode);      \r",
+									"validateContentType(contentType);    \r",
+									"\r",
+									"// Fetch expected response data from collection\r",
+									"var expectedData = JSON.parse(pm.collectionVariables.get(\"expectedResponseDataUserAPI\"));\r",
+									"\r",
+									"// Expected JSON Schema\r",
+									"var expectedSchema = {\r",
+									"    type: \"array\",\r",
+									"    items: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            id: { type: \"integer\" },\r",
+									"            name: { type: \"string\" },\r",
+									"            email: { type: \"string\" },\r",
+									"            gender: { type: \"string\" },\r",
+									"            status: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"name\", \"email\", \"gender\", \"status\"]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"// Validate schema\r",
+									"validateJsonSchema(expectedSchema);\r",
+									"\r",
+									"// Commenting this due to dynamic change of users-\r",
+									"// Validate response body keys and values dynamically\r",
+									"// Object.keys(expectedData).forEach(key => {\r",
+									"//     validateResponseBodyKey(key, expectedData[key]);\r",
+									"// });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domainName}}/public/v2/users",
+							"host": [
+								"{{domainName}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "/public/v2/posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Convert stored functions back into usable functions\r",
+									"eval(pm.globals.get(\"validateResponseTime\"));\r",
+									"eval(pm.globals.get(\"validateStatusCode\"));\r",
+									"eval(pm.globals.get(\"validateContentType\"));\r",
+									"eval(pm.globals.get(\"validateJsonSchema\"));\r",
+									"eval(pm.globals.get(\"validateResponseBodyKey\"));\r",
+									"\r",
+									"var responseTime = Number(pm.collectionVariables.get(\"responseTimeInms\"));\r",
+									"var statusCode = Number(pm.collectionVariables.get(\"responseSuccessStatusCode\"));\r",
+									"var contentType = pm.collectionVariables.get(\"resposnseContentType\");\r",
+									"\r",
+									"// Call validation functions\r",
+									"validateResponseTime(responseTime);  \r",
+									"validateStatusCode(statusCode);      \r",
+									"validateContentType(contentType);   \r",
+									"\r",
+									"// Fetch expected response data from collection\r",
+									"var expectedData = JSON.parse(pm.collectionVariables.get(\"expectedResponsePosts\"));\r",
+									"\r",
+									"var expectedSchema = {\r",
+									"    type: \"array\", \r",
+									"    items: {  \r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            id: { type: \"integer\" },\r",
+									"            user_id: { type: \"integer\" },\r",
+									"            title: { type: \"string\" },\r",
+									"            body: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"user_id\", \"title\", \"body\"]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"validateJsonSchema(expectedSchema);\r",
+									"\r",
+									"// Validate response body keys and values dynamically\r",
+									"Object.keys(expectedData).forEach(key => {\r",
+									"    validateResponseBodyKey(key, expectedData[key]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domainName}}/public/v2/posts",
+							"host": [
+								"{{domainName}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Todos",
+			"item": [
+				{
+					"name": "/public/v2/todos",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Convert stored functions back into usable functions\r",
+									"eval(pm.globals.get(\"validateResponseTime\"));\r",
+									"eval(pm.globals.get(\"validateStatusCode\"));\r",
+									"eval(pm.globals.get(\"validateContentType\"));\r",
+									"eval(pm.globals.get(\"validateJsonSchema\"));\r",
+									"eval(pm.globals.get(\"validateResponseBodyKey\"));\r",
+									"\r",
+									"var responseTime = Number(pm.collectionVariables.get(\"responseTimeInms\"));\r",
+									"var statusCode = Number(pm.collectionVariables.get(\"responseSuccessStatusCode\"));\r",
+									"var contentType = pm.collectionVariables.get(\"resposnseContentType\");\r",
+									"\r",
+									"// Call validation functions\r",
+									"validateResponseTime(responseTime);  \r",
+									"validateStatusCode(statusCode);     \r",
+									"validateContentType(contentType);  \r",
+									"\r",
+									"// Fetch expected response data from collection\r",
+									"var expectedData = JSON.parse(pm.collectionVariables.get(\"expectedResponseToDos\"));\r",
+									"\r",
+									"var expectedSchema = {\r",
+									"    type: \"array\", \r",
+									"    items: {  \r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            id: { type: \"integer\" },\r",
+									"            user_id: { type: \"integer\" },\r",
+									"            title: { type: \"string\" },\r",
+									"            due_on: { type: \"string\" },\r",
+									"            status: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"user_id\", \"title\", \"due_on\", \"status\"]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"validateJsonSchema(expectedSchema);\r",
+									"\r",
+									"Object.keys(expectedData).forEach(key => {\r",
+									"    validateResponseBodyKey(key, expectedData[key]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domainName}}/public/v2/todos",
+							"host": [
+								"{{domainName}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UserPosts",
+			"item": [
+				{
+					"name": "/public/v2/users/7373665/posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Convert stored functions back into usable functions\r",
+									"eval(pm.globals.get(\"validateResponseTime\"));\r",
+									"eval(pm.globals.get(\"validateStatusCode\"));\r",
+									"eval(pm.globals.get(\"validateContentType\"));\r",
+									"eval(pm.globals.get(\"validateJsonSchema\"));\r",
+									"eval(pm.globals.get(\"validateResponseBodyKey\"));\r",
+									"\r",
+									"var maxResponseTime = Number(pm.collectionVariables.get(\"responseTimeInms\"));\r",
+									"var expectedStatusCode = Number(pm.collectionVariables.get(\"responseSuccessStatusCode\"));\r",
+									"var expectedContentType = pm.collectionVariables.get(\"resposnseContentType\");\r",
+									"\r",
+									"// Call validation functions\r",
+									"validateResponseTime(maxResponseTime);  \r",
+									"validateStatusCode(expectedStatusCode); \r",
+									"validateContentType(expectedContentType); \r",
+									"\r",
+									"// Expected JSON Schema\r",
+									"var expectedSchema = {\r",
+									"    type: \"array\", \r",
+									"    items: {  \r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            id: { type: \"integer\" },\r",
+									"            user_id: { type: \"integer\" },\r",
+									"            title: { type: \"string\" },\r",
+									"            body: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"user_id\", \"title\", \"body\"]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"// Validate JSON Schema\r",
+									"validateJsonSchema(expectedSchema);\r",
+									"\r",
+									"// Fetch expected response data from collection\r",
+									"var expectedData = JSON.parse(pm.collectionVariables.get(\"expectedResponseDataUserPostAPI\"));\r",
+									"\r",
+									"// Validate response body keys and values dynamically\r",
+									"Object.keys(expectedData).forEach(key => {\r",
+									"    validateResponseBodyKey(key, expectedData[key]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domainName}}/public/v2/users/7745648/posts",
+							"host": [
+								"{{domainName}}"
+							],
+							"path": [
+								"public",
+								"v2",
+								"users",
+								"7745648",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"pm.globals.set(\"validateResponseTime\", `function validateResponseTime(maxTime) {\r",
+					"    pm.test(\\`Response time is within \\${maxTime}ms\\`, function () {\r",
+					"        pm.expect(pm.response.responseTime).to.be.below(maxTime);\r",
+					"    });\r",
+					"}`);\r",
+					"\r",
+					"pm.globals.set(\"validateStatusCode\", `function validateStatusCode(expectedStatus) {\r",
+					"    pm.test(\\`Status code is \\${expectedStatus}\\`, function () {\r",
+					"        pm.expect(pm.response.code).to.eql(expectedStatus);\r",
+					"    });\r",
+					"}`);\r",
+					"\r",
+					"pm.globals.set(\"validateContentType\", `function validateContentType(expectedType) {\r",
+					"    pm.test(\\`Content-Type is \\${expectedType}\\`, function () {\r",
+					"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(expectedType);\r",
+					"    });\r",
+					"}`);\r",
+					"\r",
+					"pm.globals.set(\"validateJsonSchema\", `function validateJsonSchema(schema) {\r",
+					"    pm.test(\"Response follows the expected JSON schema\", function () {\r",
+					"        pm.response.to.have.jsonSchema(schema);\r",
+					"    });\r",
+					"}`);\r",
+					"\r",
+					"pm.globals.set(\"validateResponseBodyKey\", `function validateResponseBodyKey(key, expectedValue) {\r",
+					"    pm.test(\\`Response contains \\${key} with value \\${expectedValue}\\`, function () {\r",
+					"        let jsonData = pm.response.json();\r",
+					"        if (Array.isArray(jsonData)) {\r",
+					"            let keyExists = jsonData.some(obj => obj[key] === expectedValue);\r",
+					"            pm.expect(keyExists).to.be.true;\r",
+					"        } else {\r",
+					"            pm.expect(jsonData[key]).to.eql(expectedValue);\r",
+					"        }\r",
+					"    });\r",
+					"}`);\r",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "responseTimeInms",
+			"value": "6000",
+			"type": "string"
+		},
+		{
+			"key": "responseSuccessStatusCode",
+			"value": "200",
+			"type": "string"
+		},
+		{
+			"key": "resposnseContentType",
+			"value": "application/json",
+			"type": "string"
+		},
+		{
+			"key": "expectedResponseDataUserAPI",
+			"value": "{\n  \"id\": 7744898,\n  \"name\": \"Baalagopaal Kaniyar\",\n  \"status\": \"active\",\n  \"email\": \"kaniyar_baalagopaal@bogisich.test\",\n  \"gender\": \"female\"\n}",
+			"type": "string"
+		},
+		{
+			"key": "expectedResponseDataUserPostAPI",
+			"value": "{\n  \"id\": 197116,\n  \"user_id\": 7745648,\n  \"title\": \"Vomica curriculum et qui decet calculus dolorum.\",\n  \"body\": \"Defigo carcer tardus. Claudeo deficio apto. Sit quia attonbitus. Verbum vinculum qui. Earum cultura pax. Asper vel tui. Adultus pax tremo. Patior patruus adficio. Demonstro territo aggero. Earum cernuus et. Amitto vomica spoliatio. Speculum ut surculus. Texo deporto libero. Triumphus qui tutamen. Adipisci dedecor verus. Urbs velit caveo. Turpe valens basium. Aequus adipisci usque. Doloremque tutamen trado.\"\n}",
+			"type": "string"
+		},
+		{
+			"key": "expectedResponseToDos",
+			"value": "{\n  \"id\": 76102,\n  \"user_id\": 7745648,\n  \"title\": \"Beatae neque audentia sulum nostrum nihil speculum.\",\n  \"due_on\": \"2025-03-20T00:00:00.000+05:30\",\n  \"status\": \"completed\"\n}",
+			"type": "string"
+		},
+		{
+			"key": "expectedResponsePosts",
+			"value": "{\n  \"id\": 197116,\n  \"user_id\": 7745648,\n  \"title\": \"Vomica curriculum et qui decet calculus dolorum.\",\n  \"body\": \"Defigo carcer tardus. Claudeo deficio apto. Sit quia attonbitus. Verbum vinculum qui. Earum cultura pax. Asper vel tui. Adultus pax tremo. Patior patruus adficio. Demonstro territo aggero. Earum cernuus et. Amitto vomica spoliatio. Speculum ut surculus. Texo deporto libero. Triumphus qui tutamen. Adipisci dedecor verus. Urbs velit caveo. Turpe valens basium. Aequus adipisci usque. Doloremque tutamen trado.\"\n}",
+			"type": "string"
+		}
+	]
+}
