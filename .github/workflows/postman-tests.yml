@@ -31,7 +31,7 @@ jobs:
           newman run GoRestCollection.json -e GoRestEnvironment.json -r cli,html --reporter-html-export report.html
 
       - name: Upload Test Report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: newman-report
           path: report.html
